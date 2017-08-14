@@ -4,8 +4,11 @@
 int main() {
     GtkBuilder      *myBuilder;
     GtkWidget       *myWinPending;
+    GtkWidget *parent;
+
 
     gtk_init(NULL, NULL);
+    parent = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
     myBuilder = gtk_builder_new();
     GError *err = NULL; /* It is mandatory to initialize to NULL */
@@ -21,7 +24,7 @@ int main() {
     gtk_builder_connect_signals(myBuilder, NULL);
 
     g_object_unref(myBuilder);
-
+    gtk_window_set_transient_for(GTK_WINDOW(myWinPending), GTK_WINDOW(parent));
     gtk_widget_show(myWinPending);
     gtk_main();
 
