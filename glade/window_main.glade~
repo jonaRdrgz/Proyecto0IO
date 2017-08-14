@@ -4,10 +4,10 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="window_main">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Hello Word Tuto</property>
+    <property name="title" translatable="yes">Investigación de Operaciones</property>
     <property name="window_position">center</property>
-    <property name="default_width">800</property>
-    <property name="default_height">800</property>
+    <property name="width_request">600</property>
+    <property name="height_request">500</property>
     <child>
       <object class="GtkBox" id="fixed1">
         <property name="visible">True</property>
@@ -63,6 +63,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -80,6 +81,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -97,6 +99,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -114,10 +117,11 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <signal name="clicked" handler="btn_count_click" swapped="no"/>
+            <signal name="clicked" handler="run_program4" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -131,6 +135,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -160,14 +165,6 @@
           </packing>
         </child>
       </object>
-    </child>
-  </object>
-  <object class="GtkPopover" id="win_pop">
-    <property name="can_focus">False</property>
-    <property name="relative_to">btn_program1</property>
-    <property name="position">right</property>
-    <child>
-      <placeholder/>
     </child>
   </object>
 </interface>
