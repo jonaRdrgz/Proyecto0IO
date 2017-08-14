@@ -9,24 +9,22 @@
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
+    <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
     <property name="deletable">False</property>
     <property name="message_type">warning</property>
-    <property name="buttons">close</property>
-    <signal name="close" handler="close_dialog" swapped="no"/>
+    <property name="buttons">ok</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="name">Pending</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
+        <property name="app_paintable">True</property>
+        <property name="can_focus">True</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
+            <property name="app_paintable">True</property>
             <property name="can_focus">False</property>
-            <property name="homogeneous">True</property>
-            <property name="layout_style">end</property>
-            <signal name="destroy" handler="pending_destroy" swapped="no"/>
+            <property name="resize_mode">immediate</property>
+            <signal name="button-press-event" handler="pending_destroy" swapped="no"/>
+            <signal name="button-release-event" handler="pending_destroy" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -35,30 +33,16 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="lbl_pending1">
+          <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Pending!</property>
-            <attributes>
-              <attribute name="font-desc" value="NanumGothic Bold 15"/>
-              <attribute name="foreground" value="#f5f579790000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child type="center">
-          <object class="GtkLabel" id="lbl_pending">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">This program is not on service</property>
-            <attributes>
-              <attribute name="font-desc" value="NanumGothic Bold 11"/>
-              <attribute name="foreground" value="#8f8f59590202"/>
-            </attributes>
+            <property name="margin_left">9</property>
+            <property name="margin_right">19</property>
+            <property name="label" translatable="yes">El programa solicitado no esta dosponible</property>
+            <property name="justify">right</property>
+            <property name="wrap">True</property>
+            <property name="ellipsize">end</property>
+            <property name="width_chars">12</property>
           </object>
           <packing>
             <property name="expand">False</property>
