@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="window_main">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Hello Word Tuto</property>
+    <property name="window_position">center</property>
+    <property name="width_request">600</property>
+    <property name="height_request">600</property>
+    <child>
+      <object class="GtkBox" id="fixed1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
+        <property name="margin_top">5</property>
+        <property name="margin_bottom">5</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="lbl_maintitle">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">15</property>
+            <property name="margin_bottom">15</property>
+            <property name="label" translatable="yes">Investigación de Operaciones</property>
+            <property name="justify">center</property>
+            <property name="width_chars">1</property>
+            <property name="max_width_chars">1</property>
+            <attributes>
+              <attribute name="font-desc" value="DejaVu Sans Bold 15"/>
+              <attribute name="foreground" value="#5c5c35356666"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lbl_counter">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">15</property>
+            <property name="margin_bottom">15</property>
+            <property name="label" translatable="yes">Programas:</property>
+            <attributes>
+              <attribute name="font-desc" value="DejaVu Sans 12"/>
+              <attribute name="foreground" value="#8f8f59590202"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_program1">
+            <property name="label" translatable="yes">Programa 1</property>
+            <property name="width_request">25</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="run_program1" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_program2">
+            <property name="label" translatable="yes">Programa 2</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="run_program2" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_program3">
+            <property name="label" translatable="yes">Programa 3</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="run_program3" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_program4">
+            <property name="label" translatable="yes">Programa 4</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="btn_count_click" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_program5">
+            <property name="label" translatable="yes">Programa 5</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="run_program5" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_close_main">
+            <property name="label">gtk-quit</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_top">40</property>
+            <property name="use_stock">True</property>
+            <signal name="clicked" handler="on_window_main_destroy" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
