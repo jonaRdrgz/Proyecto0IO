@@ -31,9 +31,10 @@ int main() {
     gtk_init(NULL, NULL);
      myCSS();
 
-    parent = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+   
 
     myBuilder = gtk_builder_new();
+     parent = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_main"));
     GError *err = NULL; /* It is mandatory to initialize to NULL */
     if(0 ==   gtk_builder_add_from_file (myBuilder, "glade/pending.glade", &err))
     {

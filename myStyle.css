@@ -10,8 +10,13 @@ GtkButton{
 	 border-radius: 22px;
 
 }
+#OK{
+	background-color: #052340;
+	 border-radius: 22px;
+
+}
 #Pending{
-	background-color: #4C657F
+	background-color: #4C657F;
 }
 
 #quit{

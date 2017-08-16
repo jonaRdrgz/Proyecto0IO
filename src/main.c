@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
 void display_pending() {
   system("./pending &"); 
 }
@@ -28,8 +30,11 @@ void myCSS(void){
 }
 
 void on_window_main_destroy()
-{
+
+{   
+
     gtk_main_quit();
+
 }
 
 void run_program1(){
@@ -51,7 +56,7 @@ void run_program5(){
 int main(int argc, char *argv[])
 {
     GtkBuilder      *myBuilder; 
-    GtkWidget       *window, *button1;
+    GtkWidget       *window ;
  	
 
     gtk_init(&argc, &argv);
