@@ -3,11 +3,13 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="window_main">
+    <property name="name">window_main</property>
     <property name="width_request">400</property>
     <property name="height_request">400</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Investigación de Operaciones</property>
     <property name="window_position">center</property>
+    <property name="type_hint">splashscreen</property>
     <child>
       <object class="GtkBox" id="fixed1">
         <property name="visible">True</property>
@@ -19,17 +21,18 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="lbl_maintitle">
+            <property name="name">OR</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_top">15</property>
-            <property name="margin_bottom">15</property>
-            <property name="label" translatable="yes">Investigación de Operaciones</property>
+            <property name="margin_bottom">30</property>
+            <property name="label" translatable="yes"> 	Operations Research	</property>
             <property name="justify">center</property>
             <property name="width_chars">1</property>
             <property name="max_width_chars">1</property>
             <attributes>
               <attribute name="font-desc" value="DejaVu Sans Bold 15"/>
-              <attribute name="foreground" value="#5c5c35356666"/>
+              <attribute name="foreground" value="#eeeeeeeeecec"/>
             </attributes>
           </object>
           <packing>
@@ -40,14 +43,15 @@
         </child>
         <child>
           <object class="GtkLabel" id="lbl_counter">
+            <property name="name">title</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">15</property>
+            <property name="margin_top">14</property>
             <property name="margin_bottom">15</property>
-            <property name="label" translatable="yes">Programas:</property>
+            <property name="label" translatable="yes">Programs:</property>
             <attributes>
-              <attribute name="font-desc" value="DejaVu Sans 12"/>
-              <attribute name="foreground" value="#8f8f59590202"/>
+              <attribute name="font-desc" value="DejaVu Sans Bold 15"/>
+              <attribute name="foreground" value="#eeeeeeeeecec"/>
             </attributes>
           </object>
           <packing>
@@ -58,7 +62,8 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program1">
-            <property name="label" translatable="yes">Programa 1</property>
+            <property name="label" translatable="yes">Program 1</property>
+            <property name="name">btn_program</property>
             <property name="width_request">25</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -77,7 +82,8 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program2">
-            <property name="label" translatable="yes">Programa 2</property>
+            <property name="label" translatable="yes">Program 2</property>
+            <property name="name">btn_program</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -95,7 +101,8 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program3">
-            <property name="label" translatable="yes">Programa 3</property>
+            <property name="label" translatable="yes">Program 3</property>
+            <property name="name">btn_program</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -113,7 +120,8 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program4">
-            <property name="label" translatable="yes">Programa 4</property>
+            <property name="label" translatable="yes">Program 4</property>
+            <property name="name">btn_program</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -131,7 +139,8 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program5">
-            <property name="label" translatable="yes">Programa 5</property>
+            <property name="label" translatable="yes">Program 5</property>
+            <property name="name">btn_program</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -150,11 +159,12 @@
         <child>
           <object class="GtkButton" id="btn_close_main">
             <property name="label">gtk-quit</property>
+            <property name="name">quit</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">center</property>
-            <property name="margin_top">40</property>
+            <property name="margin_top">8</property>
             <property name="use_stock">True</property>
             <signal name="clicked" handler="on_window_main_destroy" swapped="no"/>
           </object>

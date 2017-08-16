@@ -24,12 +24,19 @@
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
+            <property name="name">OK</property>
             <property name="app_paintable">True</property>
             <property name="can_focus">False</property>
-            <property name="homogeneous">True</property>
+            <property name="has_focus">True</property>
             <property name="layout_style">end</property>
             <signal name="button-press-event" handler="pending_destroy" swapped="no"/>
             <signal name="button-release-event" handler="pending_destroy" swapped="no"/>
+            <child>
+              <placeholder/>
+            </child>
+            <child type="center">
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -44,7 +51,7 @@
             <property name="label" translatable="yes">Pending!</property>
             <attributes>
               <attribute name="font-desc" value="NanumGothic Bold 15"/>
-              <attribute name="foreground" value="#f5f579790000"/>
+              <attribute name="foreground" value="#eeeeeeeeecec"/>
             </attributes>
           </object>
           <packing>
@@ -60,7 +67,7 @@
             <property name="label" translatable="yes">This program is not on service</property>
             <attributes>
               <attribute name="font-desc" value="NanumGothic Bold 11"/>
-              <attribute name="foreground" value="#8f8f59590202"/>
+              <attribute name="foreground" value="#ffffc962c962"/>
             </attributes>
           </object>
           <packing>
