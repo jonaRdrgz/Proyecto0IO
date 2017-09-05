@@ -11,6 +11,10 @@ void display_pending() {
   system("./pending &"); 
 }
 
+void display_series() {
+  system("./series &"); 
+}
+
 void myCSS(void){
 
     GtkCssProvider *provider;
@@ -38,7 +42,7 @@ void on_window_main_destroy()
 }
 
 void run_program1(){
-    display_pending();
+    display_series();
 }
 void run_program2(){
     display_pending();
