@@ -5,8 +5,8 @@
 
 int juegosAGanar;
 int juegosCasa[n];
-float Ph = 0.57;
-float Pr = 0.49;
+float Ph = 0.55;
+float Pr = 0.55;
 
 void llenarSeries(){
 	for(int i =0; i<n; i++){
