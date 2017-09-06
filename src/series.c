@@ -11,6 +11,7 @@ GtkWidget       *windowFinal;
 GtkWidget       ***tableP0;
 GtkWidget 		*scrolledTableSerie;
 GtkWidget 		*tableP;
+
  	
 void createTable()
 {
@@ -25,8 +26,9 @@ void createTable()
    	for(int i = 0; i < 10; i++)
    	{
    		for(int j = 0; j < 10; j++)
-   		{	tableP0[i][j] = gtk_entry_new();
-   			gtk_entry_set_text (GTK_ENTRY(tableP0[i][j]), "izcar :v");
+   		{	
+   			tableP0[i][j] = gtk_entry_new();
+   			gtk_entry_set_text (GTK_ENTRY(tableP0[i][j]), "");
    			gtk_entry_set_width_chars(GTK_ENTRY(tableP0[i][j]),8);
    			gtk_grid_attach (GTK_GRID(tableP),tableP0[i][j], i, j, 1, 1);
    			gtk_widget_set_sensitive(tableP0[i][j],FALSE);
@@ -34,6 +36,13 @@ void createTable()
    		}
    	}
 }
+
+
+
+
+
+
+
 int main(int argc, char *argv[])
 {
    
@@ -44,11 +53,11 @@ int main(int argc, char *argv[])
     myBuilder = gtk_builder_new();
     gtk_builder_add_from_file (myBuilder, "glade/window_series.glade", NULL);
  
-    windowFinal = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_final_series"));
+    windowFinal = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_create_data_series"));
     
-	scrolledTableSerie = GTK_WIDGET(gtk_builder_get_object(myBuilder, "gtkScrolledWindowTableSerie"));
+	//scrolledTableSerie = GTK_WIDGET(gtk_builder_get_object(myBuilder, "gtkScrolledWindowTableSerie"));
     
-    createTable();
+    //createTable();
 
     gtk_builder_connect_signals(myBuilder, NULL);
 
