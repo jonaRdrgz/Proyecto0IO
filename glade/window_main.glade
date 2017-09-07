@@ -61,13 +61,13 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program1">
-            <property name="label" translatable="yes">Program 1</property>
+            <property name="label" translatable="yes">Series Deportivas</property>
             <property name="name">btn_program</property>
             <property name="width_request">25</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="tooltip_markup" translatable="yes">Determina la probabilidad de un equipo de ganar una serie deportiva.</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -162,6 +162,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Salir del programa</property>
             <property name="halign">center</property>
             <property name="margin_top">8</property>
             <property name="use_stock">True</property>
