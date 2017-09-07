@@ -6,7 +6,7 @@
 int juegosAGanar;
 int juegosCasa[n];
 float Ph = 0.55;
-float Pr = 0.55;
+float Pr = 0.45;
 
 void llenarSeries(){
 	for(int i =0; i<n; i++){
@@ -47,19 +47,24 @@ void imprimirMatriz(float matrix[juegosAGanar+1][juegosAGanar+1]){
 		}
 	}
 }
-int  main(void){
+void  Game(){
 	llenarSeries();
 	juegosCasa[0] = 1;
 	juegosCasa[1] = 1;
 	juegosCasa[5] = 1;
 	juegosCasa[6] = 1;
 	juegosAGanar = calcularJuegosAGanar(n);
-	printf("Juegos a ganar %d\n",juegosAGanar );
 	float matrix[juegosAGanar+1][juegosAGanar+1];
 	casosBase(matrix, juegosAGanar+1);
 	llenarMatriz(matrix, juegosAGanar+1);
 	imprimirMatriz(matrix);
 
-	return 0;
+
+}
+
+int main()
+{
+	Game();
+	return 1;
 }
 
