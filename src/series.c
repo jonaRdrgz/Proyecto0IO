@@ -12,10 +12,14 @@ GtkWidget       *windowInitial;
 GtkWidget       *windowCreateData;
 GtkWidget       *windowFinal;
 //initiial
-
+GtkWidget 		*loadFileButton;
+GtkWidget 		*chooseFileButton;
 GtkWidget  		*spinButtonGame;
 GtkWidget 		*spinButtonGamePH;
 GtkWidget 		*spinButtonGamePV;
+GtkWidget 		*saveFileButton;
+GtkWidget 		*filenameEntry;
+GtkWidget 		*windowSave;
 
 
 
@@ -31,6 +35,11 @@ GtkWidget 		*execGameButton;
 GtkWidget 		*scrolleGameSerieH;
 GtkWidget 		**tableHV0;
 GtkWidget 		*tableHV;
+
+//Guardar Archivo
+FILE *infoFile;
+
+char loadGame[1000];
 
 int inputNumberGames;
 
@@ -86,6 +95,20 @@ void imprimirMatriz(float matrix[juegosAGanar+1][juegosAGanar+1]){
 }
 
 
+void createInfoFile(char *filename) {
+  infoFile = fopen(filename,"w+");
+  fprintf(infoFile,"%d\n",inputNumberGames);
+  fprintf(infoFile,"%f\n",inputPH);
+  fprintf(infoFile,"%f\n",inputPV);
+
+  for(int i = 0; i < inputNumberGames; i++) 
+  {
+    fprintf(infoFile,"%d",juegosCasa[i]);
+  }
+  
+  fclose(infoFile);
+}
+
 
 
  	
@@ -117,14 +140,6 @@ void createTable()
 
 
 
-
-
-
-
-
-
-
-
    	gtk_container_add(GTK_CONTAINER(scrolledTableSerie), tableP);
 
    	for(int i = 0; i < juegosAGanar + 1; i++)
@@ -141,6 +156,7 @@ void createTable()
 
    		}
    	}
+
 }
 
 void createTableHV()
@@ -166,6 +182,132 @@ void createTableHV()
 	
 }
 
+int loadData(char *filename)
+{
+	infoFile = fopen(filename, "r");
+	if(infoFile != NULL)
+	{
+		fscanf(infoFile, "%i", &inputNumberGames);
+		fscanf(infoFile, "%f", &inputPH);
+		fscanf(infoFile, "%f", &inputPV);
+		fscanf(infoFile, "%s", loadGame);
+
+		fclose(infoFile);
+		return 1;
+	}
+	return 0;
+}
+
+void saveFile()
+{
+	
+
+	char filename[1000] = "examples/series/";
+	strcat(filename,gtk_entry_get_text (GTK_ENTRY(filenameEntry)));
+	strcat(filename,"txt");
+	
+	printf("%s\n", filename);
+	inputPH = gtk_spin_button_get_value_as_float (GTK_SPIN_BUTTON(spinButtonGamePH));
+	inputPV = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(spinButtonGamePV));
+	for(int i = 0; i < inputNumberGames; i++)
+	{
+		if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(tableHV0[i]))){
+			juegosCasa[i] = 1;
+		}
+		else {
+			juegosCasa[i] = 0;
+		}
+	}
+
+	createInfoFile(filename);
+	
+	gtk_entry_set_text(GTK_ENTRY(filenameEntry),"");
+
+	gtk_widget_show_all(windowSave);
+
+
+
+
+}
+void destroy()
+{
+	gtk_widget_hide(windowSave);
+}
+
+void createTableHV1()
+{
+	tableHV0 = calloc(inputNumberGames,sizeof(GtkWidget*));
+    tableHV = gtk_grid_new ();
+
+    gtk_container_add (GTK_CONTAINER (scrolleGameSerieH), tableHV);
+
+    char text[14];
+  	char number[4];
+
+  	gtk_spin_button_set_value (GTK_SPIN_BUTTON(spinButtonGamePH),inputPH);
+
+	gtk_spin_button_set_value (GTK_SPIN_BUTTON(spinButtonGamePV),inputPV);
+
+
+
+    for(int j = 0; j < inputNumberGames ; j++) {
+
+    	strcpy(text,"Game ");
+	  	sprintf(number, "%d", j + 1);
+	  	strcat(text,number);
+	    tableHV0[j] = gtk_check_button_new_with_label (text); 
+	    gtk_grid_attach (GTK_GRID (tableHV),tableHV0[j] ,j % 5 ,  j / 5  , 1, 1);
+	    memset(text,'\0',strlen(text));
+  	}
+
+  	for (int i = 0; i < inputNumberGames; ++i)
+  	{
+  		printf("%c\n",loadGame[i] );
+  		if(loadGame[i] == '1')
+  		{
+  			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tableHV0[i]), TRUE);
+  		}
+  		else
+  		{
+  			gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(tableHV0[i]), FALSE);
+  		}
+  	}
+	
+}
+
+int loadFile()
+{
+	char *filename;
+	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooseFileButton));
+
+	int flag = loadData(filename);
+
+	return flag;
+
+}
+
+void createGameFile()
+{
+	
+
+	
+	if(loadFile() == 1)
+	{
+		gtk_widget_hide(windowInitial);
+		createTableHV1();
+
+		gtk_widget_show_all(windowCreateData);
+	}
+	else
+	{
+
+	}
+	 
+
+}
+
+
+
 void createGame()
 {
 	gtk_widget_hide(windowInitial); 
@@ -176,6 +318,7 @@ void createGame()
 	 
 
 }
+
 
 
 void execGame()
@@ -190,19 +333,6 @@ void execGame()
 	
 }
 
-/*void createFile(char *fileName) {
-  file_tableData = fopen(fileName,"w+");
-  fprintf(file_tableData,"%d#\n",inputNumberGames);
-  fprintf(file_tableData,"%f%%\n",ph);
-  fprintf(file_tableData,"%f%%\n",pr);
-
-  for(int column =0; column < inputNumberGames; column++) 
-  {
-    fprintf(file_tableData,"%d^",formatSerie[column]);
-  }
-  
-  fclose(file_tableData);
-}*/
 
 
 
@@ -251,10 +381,16 @@ int main(int argc, char *argv[])
 
 
     scrolleGameSerieH = GTK_WIDGET(gtk_builder_get_object(myBuilder, "scrolleGameSerieH"));
-
+    saveFileButton = GTK_WIDGET(gtk_builder_get_object(myBuilder, "saveFileButton"));
+    filenameEntry = GTK_WIDGET(gtk_builder_get_object(myBuilder, "filenameEntry"));
     
 	scrolledTableSerie = GTK_WIDGET(gtk_builder_get_object(myBuilder, "gtkScrolledWindowTableSerie"));
     
+    chooseFileButton = GTK_WIDGET(gtk_builder_get_object(myBuilder, "chooseFileButton"));
+    loadFileButton = GTK_WIDGET(gtk_builder_get_object(myBuilder, "loadFileButton"));
+
+    windowSave = GTK_WIDGET(gtk_builder_get_object(myBuilder, "windowSave"));
+
 
     gtk_builder_connect_signals(myBuilder, NULL);
 
