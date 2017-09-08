@@ -237,8 +237,11 @@ void saveFile()
 	
 
 	char filename[1000] = "examples/series/";
-	if(gtk_entry_get_text (GTK_ENTRY(filenameEntry)) != " " )
+	
+	int len = gtk_entry_get_text_length (GTK_ENTRY(filenameEntry));
+	if(len != 0 )
 	{
+		
 		strcat(filename,gtk_entry_get_text (GTK_ENTRY(filenameEntry)));
 		strcat(filename,".txt");
 		

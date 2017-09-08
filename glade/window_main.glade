@@ -50,7 +50,7 @@
             <property name="label" translatable="yes">Programas:</property>
             <attributes>
               <attribute name="font-desc" value="DejaVu Sans Bold 15"/>
-              <attribute name="foreground" value="#eeeeeeeeecec"/>
+              <attribute name="foreground" value="#9932CC"/>
             </attributes>
             <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
           </object>
