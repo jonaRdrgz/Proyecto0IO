@@ -17,16 +17,12 @@ GtkWidget  		*spinButtonGame;
 GtkWidget 		*spinButtonGamePH;
 GtkWidget 		*spinButtonGamePV;
 
-
-
 //final 
 GtkWidget       ***tableP0;
 GtkWidget 		*scrolledTableSerie;
 GtkWidget 		*tableP;
 
-
 //create Data
-
 GtkWidget 		*execGameButton;
 GtkWidget 		*scrolleGameSerieH;
 GtkWidget 		**tableHV0;
@@ -41,6 +37,24 @@ int juegosCasa[1000];
 
 int juegosAGanar;
 
+void on_window_main_destroy(){gtk_main_quit();}
+
+void myCSS(void){
+    GtkCssProvider *provider;
+    GdkDisplay *display;
+    GdkScreen *screen;
+
+    provider = gtk_css_provider_new ();
+    display = gdk_display_get_default ();
+    screen = gdk_display_get_default_screen (display);
+    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    const gchar *myCssFile = "myStyle.css";
+    GError *error = 0;
+
+    gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
+    g_object_unref (provider);
+}
 
 void llenarSeries(){
 
@@ -190,36 +204,20 @@ void execGame()
 	
 }
 
-/*void createFile(char *fileName) {
-  file_tableData = fopen(fileName,"w+");
-  fprintf(file_tableData,"%d#\n",inputNumberGames);
-  fprintf(file_tableData,"%f%%\n",ph);
-  fprintf(file_tableData,"%f%%\n",pr);
-
-  for(int column =0; column < inputNumberGames; column++) 
-  {
-    fprintf(file_tableData,"%d^",formatSerie[column]);
-  }
-  
-  fclose(file_tableData);
-}*/
-
-
-
 
 int main(int argc, char *argv[])
 {
    
 
     gtk_init(&argc, &argv);
-    //myCSS();
+    myCSS();
 
 
  
     myBuilder = gtk_builder_new();
     gtk_builder_add_from_file (myBuilder, "glade/window_series.glade", NULL);
  
-    windowInitial = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_initial_series"));
+    windowInitial = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_series"));
 
     windowCreateData = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_create_data_series"));
 

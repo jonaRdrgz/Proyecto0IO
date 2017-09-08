@@ -1,4 +1,4 @@
-#window_main{
+#window_main, #window_series, #window_final_series, #window_create_data_series{
     background-color: #4C657F;
 }
 
@@ -55,4 +55,20 @@
     font-family:Georgia;
     font-size: 12px;
     border-radius: 24px;
+}
+
+#spin{
+    background-color: red;
+    color: black;
+    font-family:Georgia;
+    font-size: 12px;
+    border-radius: 24px;
+}
+
+#Aligment{
+    border: none;
+}
+
+#scrollArea{
+    border: none;
 }
