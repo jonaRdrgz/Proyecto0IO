@@ -11,9 +11,7 @@ void display_pending() {
   system("./pending &"); 
 }
 
-void display_series() {
-  system("./series &"); 
-}
+
 
 void myCSS(void){
 
@@ -33,16 +31,9 @@ void myCSS(void){
     g_object_unref (provider);
 }
 
-void on_window_main_destroy()
-
-{   
-
-    gtk_main_quit();
-
-}
-
-void run_program1(){
-    display_series();
+void on_window_main_destroy(){gtk_main_quit();}
+void display_series() {
+  system("./series &"); 
 }
 void run_program2(){
     display_pending();

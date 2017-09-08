@@ -1,7 +1,20 @@
 #window_main{
     background-color: #4C657F;
 }
+#window_series, #window_final_series, #window_create_data_series{
+    background-color: #AFEEEE;
+    color: #C71585;
+    font-size:13px;
+    font-weight: bold;
+}
 
+#window_series #OR, #window_final_series #OR, #window_create_data_series #OR{
+	background-color: #C71585;
+	 border-radius: 22px;
+}
+#btn_cargar{
+color: #C71585;
+}
 
 #OR{
 	background-color: #052340;
@@ -55,4 +68,29 @@
     font-family:Georgia;
     font-size: 12px;
     border-radius: 24px;
+}
+
+#spin{
+    background-color: #FF1493;
+    color: #C71585;
+    font-family:Georgia;
+    font-size: 12px;
+    border-radius: 24px;
+}
+#spin:hover{
+	background-color: #C71585;
+}
+
+#cell{
+    background-color: black;
+	color: white;
+}
+
+#scrollArea{
+    border: none;
+}
+
+#scrollArea GtkCheckButton {
+	background-color:white;
+	color: red;
 }

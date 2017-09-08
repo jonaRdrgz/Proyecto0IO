@@ -47,11 +47,12 @@
             <property name="can_focus">False</property>
             <property name="margin_top">14</property>
             <property name="margin_bottom">15</property>
-            <property name="label" translatable="yes">Programs:</property>
+            <property name="label" translatable="yes">Programas:</property>
             <attributes>
               <attribute name="font-desc" value="DejaVu Sans Bold 15"/>
               <attribute name="foreground" value="#eeeeeeeeecec"/>
             </attributes>
+            <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -71,7 +72,7 @@
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <signal name="clicked" handler="run_program1" swapped="no"/>
+            <signal name="clicked" handler="display_series" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

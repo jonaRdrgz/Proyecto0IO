@@ -20,17 +20,15 @@ GtkWidget 		*spinButtonGamePV;
 GtkWidget 		*saveFileButton;
 GtkWidget 		*filenameEntry;
 GtkWidget 		*windowSave;
-
-
+GtkWidget 		*labelA;
+GtkWidget 		*labelB;
 
 //final 
 GtkWidget       ***tableP0;
 GtkWidget 		*scrolledTableSerie;
 GtkWidget 		*tableP;
 
-
 //create Data
-
 GtkWidget 		*execGameButton;
 GtkWidget 		*scrolleGameSerieH;
 GtkWidget 		**tableHV0;
@@ -50,6 +48,24 @@ int juegosCasa[1000];
 
 int juegosAGanar;
 
+void on_window_main_destroy(){gtk_main_quit();}
+
+void myCSS(void){
+    GtkCssProvider *provider;
+    GdkDisplay *display;
+    GdkScreen *screen;
+
+    provider = gtk_css_provider_new ();
+    display = gdk_display_get_default ();
+    screen = gdk_display_get_default_screen (display);
+    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    const gchar *myCssFile = "myStyle.css";
+    GError *error = 0;
+
+    gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
+    g_object_unref (provider);
+}
 
 void llenarSeries(){
 
@@ -86,7 +102,7 @@ void llenarMatriz(float matrix[juegosAGanar+1][juegosAGanar+1], int tamMatriz){
 }
 void imprimirMatriz(float matrix[juegosAGanar+1][juegosAGanar+1]){
 	for(int i = 0; i< juegosAGanar+1; i++){
-		printf("%s\n", "");
+	
 		for (int j = 0; j < juegosAGanar+1; j++)
 		{
 			printf("%f    ", matrix[i][j]);
@@ -140,6 +156,7 @@ void createTable()
 
 
 
+
    	gtk_container_add(GTK_CONTAINER(scrolledTableSerie), tableP);
 
    	for(int i = 0; i < juegosAGanar + 1; i++)
@@ -156,6 +173,23 @@ void createTable()
 
    		}
    	}
+
+
+   	char numberA[14];
+   	sprintf(numberA, "%.4f",matrix[juegosAGanar][juegosAGanar] );
+
+   	char probA[1000] = "La probabilidad de A\nde ganar es: ";
+   	strcat(probA, numberA);
+
+   	gtk_label_set_text(GTK_LABEL(labelA), probA);
+
+   	char numberB[14];
+   	sprintf(numberB, "%.4f",1 - matrix[juegosAGanar][juegosAGanar] );
+
+   	char probB[1000] = "La probabilidad de B\nde ganar es: ";
+   	strcat(probB, numberB);
+
+   	gtk_label_set_text(GTK_LABEL(labelB), probB);
 
 }
 
@@ -203,27 +237,31 @@ void saveFile()
 	
 
 	char filename[1000] = "examples/series/";
-	strcat(filename,gtk_entry_get_text (GTK_ENTRY(filenameEntry)));
-	strcat(filename,"txt");
-	
-	printf("%s\n", filename);
-	inputPH = gtk_spin_button_get_value_as_float (GTK_SPIN_BUTTON(spinButtonGamePH));
-	inputPV = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(spinButtonGamePV));
-	for(int i = 0; i < inputNumberGames; i++)
+	if(gtk_entry_get_text (GTK_ENTRY(filenameEntry)) != " " )
 	{
-		if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(tableHV0[i]))){
-			juegosCasa[i] = 1;
-		}
-		else {
-			juegosCasa[i] = 0;
-		}
-	}
-
-	createInfoFile(filename);
+		strcat(filename,gtk_entry_get_text (GTK_ENTRY(filenameEntry)));
+		strcat(filename,".txt");
+		
 	
-	gtk_entry_set_text(GTK_ENTRY(filenameEntry),"");
+		inputPH = gtk_spin_button_get_value_as_float (GTK_SPIN_BUTTON(spinButtonGamePH));
+		inputPV = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(spinButtonGamePV));
+		for(int i = 0; i < inputNumberGames; i++)
+		{
+			if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(tableHV0[i]))){
+				juegosCasa[i] = 1;
+			}
+			else {
+				juegosCasa[i] = 0;
+			}
+		}
 
-	gtk_widget_show_all(windowSave);
+		createInfoFile(filename);
+		
+		gtk_entry_set_text(GTK_ENTRY(filenameEntry),"");
+
+		gtk_widget_show_all(windowSave);
+	}
+	
 
 
 
@@ -262,7 +300,6 @@ void createTableHV1()
 
   	for (int i = 0; i < inputNumberGames; ++i)
   	{
-  		printf("%c\n",loadGame[i] );
   		if(loadGame[i] == '1')
   		{
   			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tableHV0[i]), TRUE);
@@ -335,21 +372,19 @@ void execGame()
 
 
 
-
-
 int main(int argc, char *argv[])
 {
    
 
     gtk_init(&argc, &argv);
-    //myCSS();
+    myCSS();
 
 
  
     myBuilder = gtk_builder_new();
     gtk_builder_add_from_file (myBuilder, "glade/window_series.glade", NULL);
  
-    windowInitial = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_initial_series"));
+    windowInitial = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_series"));
 
     windowCreateData = GTK_WIDGET(gtk_builder_get_object(myBuilder, "window_create_data_series"));
 
@@ -390,6 +425,9 @@ int main(int argc, char *argv[])
     loadFileButton = GTK_WIDGET(gtk_builder_get_object(myBuilder, "loadFileButton"));
 
     windowSave = GTK_WIDGET(gtk_builder_get_object(myBuilder, "windowSave"));
+
+    labelA = GTK_WIDGET(gtk_builder_get_object(myBuilder, "PH1"));
+    labelB = GTK_WIDGET(gtk_builder_get_object(myBuilder, "PH2"));
 
 
     gtk_builder_connect_signals(myBuilder, NULL);
