@@ -218,7 +218,7 @@
                 <property name="name">title</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Juegos en casa del Equipo A</property>
+                <property name="label" translatable="yes">Marque los juegos en casa del Equipo A</property>
                 <attributes>
                   <attribute name="font-desc" value="DejaVu Sans Bold 12"/>
                   <attribute name="foreground" value="#99993232cccc"/>
@@ -292,6 +292,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_final_series">
+  	<property name="title" translatable="yes">Series Deportivas</property>
     <property name="name">window_final_series</property>
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
