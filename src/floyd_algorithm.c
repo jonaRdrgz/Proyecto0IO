@@ -1,22 +1,21 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-#define MIN(a, b) ((a) < (b) ? a : b) // return min a , b
+#define MINAUX(a, b) ((a) < (b) ? a : b) // return min a , b
 #define path(a, b, c, d) ((a) != (b) ? d : c) 
-#define INF 1000
-#define MAX  256
+#define INF 10000000
+#define MAXAUX  250
 #define TOTALNODE 5
 
 
 
-void floydAux(int matrix[MAX][MAX], int matrixAux[MAX][MAX], int matrixP[MAX][MAX], int totalNode, int node)
+void floydAux(int matrix[MAXAUX][MAXAUX], int matrixAux[MAXAUX][MAXAUX], int matrixP[MAXAUX][MAXAUX], int totalNode, int node)
 {
 
 	for (int i = 0; i < totalNode; i++)
 	{	int p;
 		for (int j = 0; j < totalNode; j++)
 		{	
-			p = MIN(matrix[i][j], matrix[i][node - 1] + matrix[node - 1][j]);
+			p = MINAUX(matrix[i][j], matrix[i][node - 1] + matrix[node - 1][j]);
 			matrixAux[i][j] = p;
 
 			matrixP[i][j] = path(p, matrix[i][j], matrixP[i][j], node);
@@ -37,7 +36,7 @@ void floydAux(int matrix[MAX][MAX], int matrixAux[MAX][MAX], int matrixP[MAX][MA
 
 }
 
-void printMatrix(int matrix[MAX][MAX], int totalNode)
+void printMatrix(int matrix[MAXAUX][MAXAUX], int totalNode)
 {
  
 	for (int i = 0; i < totalNode; i++)
@@ -52,7 +51,7 @@ void printMatrix(int matrix[MAX][MAX], int totalNode)
 
 }
 
-void floyd(int matrix[MAX][MAX], int matrixP[MAX][MAX], int totalNode)
+void floyd(int matrix[MAXAUX][MAXAUX], int matrixP[MAXAUX][MAXAUX], int totalNode)
 {
 
 	printf("%s%d\n","Tabla de distancia #", 0);
@@ -70,9 +69,7 @@ void floyd(int matrix[MAX][MAX], int matrixP[MAX][MAX], int totalNode)
 	}
 	printf("%s\n","Tabla P" );
 	printMatrix(matrixP, totalNode);
-	
-	
-	
+		
 }
 
 
@@ -90,8 +87,8 @@ int main(int argc, char const *argv[])
 
 										};
 
-	int matrix[MAX][MAX];
-	int matrixP[MAX][MAX];
+	int matrix[MAXAUX][MAXAUX];
+	int matrixP[MAXAUX][MAXAUX];
 
 	for(int i = 0; i < TOTALNODE; i++)
 	{	
