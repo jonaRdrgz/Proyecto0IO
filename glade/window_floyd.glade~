@@ -171,8 +171,8 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_floyd">
-    <property name="width_request">800</property>
-    <property name="height_request">650</property>
+    <property name="width_request">400</property>
+    <property name="height_request">200</property>
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="gravity">center</property>
@@ -195,7 +195,7 @@
           </object>
           <packing>
             <property name="x">450</property>
-            <property name="y">610</property>
+            <property name="y">640</property>
           </packing>
         </child>
         <child>
@@ -235,7 +235,7 @@
           </object>
           <packing>
             <property name="x">100</property>
-            <property name="y">610</property>
+            <property name="y">640</property>
           </packing>
         </child>
         <child>
@@ -253,8 +253,8 @@
                 <property name="left_padding">12</property>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow_table">
-                    <property name="width_request">740</property>
-                    <property name="height_request">250</property>
+                    <property name="width_request">400</property>
+                    <property name="height_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="shadow_type">in</property>
@@ -276,8 +276,8 @@
             </child>
           </object>
           <packing>
-            <property name="x">24</property>
-            <property name="y">20</property>
+            <property name="x">100</property>
+            <property name="y">80</property>
           </packing>
         </child>
         <child>
@@ -295,8 +295,8 @@
                 <property name="left_padding">12</property>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow_tableP">
-                    <property name="width_request">740</property>
-                    <property name="height_request">250</property>
+                    <property name="width_request">400</property>
+                    <property name="height_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="shadow_type">in</property>
@@ -319,8 +319,8 @@
             </child>
           </object>
           <packing>
-            <property name="x">23</property>
-            <property name="y">320</property>
+            <property name="x">100</property>
+            <property name="y">350</property>
           </packing>
         </child>
       </object>
