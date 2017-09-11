@@ -36,7 +36,7 @@ void display_series() {
   system("./series &"); 
 }
 void run_program2(){
-    display_pending();
+    system("./floyd &"); 
 }
 void run_program3(){
     display_pending();

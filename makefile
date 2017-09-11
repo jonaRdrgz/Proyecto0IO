@@ -27,6 +27,7 @@ all: $(OBJS)
 	$(CC) src/main.c -o $(TARGET) $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o pending src/pending.c $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o series src/series.c $(WARN) $(GTKLIB) -export-dynamic
+	$(CC) -o floyd src/floyd.c $(WARN) $(GTKLIB) -export-dynamic
     
 main.o: src/main.c
 	$(CC) -c $(CCFLAGS) src/main.c $(GTKLIB) -o main.o
