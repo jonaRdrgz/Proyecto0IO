@@ -3,6 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="get_path_between">
+    <property name="name">window</property>
     <property name="width_request">400</property>
     <property name="height_request">260</property>
     <property name="can_focus">False</property>
@@ -29,6 +30,7 @@
         <child>
           <object class="GtkButton" id="getOptimalPath">
             <property name="label" translatable="yes">Obtener</property>
+            <property name="name">btn_program</property>
             <property name="width_request">100</property>
             <property name="height_request">30</property>
             <property name="visible">True</property>
@@ -119,6 +121,7 @@
     </style>
   </object>
   <object class="GtkMessageDialog" id="windowSave">
+    <property name="name">window</property>
     <property name="width_request">200</property>
     <property name="height_request">100</property>
     <property name="can_focus">False</property>
@@ -135,11 +138,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="saveFileMessage">
-                <property name="label" translatable="yes">OK</property>
+                <property name="label">gtk-ok</property>
                 <property name="name">btn_program</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="destroy" swapped="no"/>
               </object>
               <packing>
@@ -171,6 +175,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_floyd">
+    <property name="name">window</property>
     <property name="width_request">400</property>
     <property name="height_request">200</property>
     <property name="can_focus">False</property>
@@ -183,6 +188,7 @@
         <child>
           <object class="GtkButton" id="btn_getPath">
             <property name="label" translatable="yes">Calcular Rutas</property>
+            <property name="name">btn_program</property>
             <property name="width_request">150</property>
             <property name="height_request">30</property>
             <property name="visible">True</property>
@@ -218,7 +224,7 @@
             </child>
             <child>
               <object class="GtkButton" id="saveFileButton">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label">gtk-save</property>
                 <property name="name">btn_program</property>
                 <property name="width_request">100</property>
                 <property name="height_request">30</property>
@@ -226,6 +232,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_markup" translatable="yes">Save File</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="saveFile" swapped="no"/>
               </object>
               <packing>
@@ -323,11 +330,28 @@
             <property name="y">350</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="exitBoton">
+            <property name="label">gtk-quit</property>
+            <property name="name">btn_program</property>
+            <property name="width_request">100</property>
+            <property name="height_request">31</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Save File</property>
+            <property name="use_stock">True</property>
+          </object>
+          <packing>
+            <property name="x">752</property>
+            <property name="y">640</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
   <object class="GtkWindow" id="window_initial_floyd">
-    <property name="name">window_series</property>
+    <property name="name">window</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Rutas cortas</property>
     <property name="window_position">center</property>
@@ -414,7 +438,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="loadFileButton">
-                        <property name="label" translatable="yes">Subir</property>
+                        <property name="label">gtk-go-up</property>
                         <property name="name">btn_program</property>
                         <property name="width_request">150</property>
                         <property name="height_request">30</property>
@@ -422,6 +446,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_markup" translatable="yes">Pulse para cargar el archivo y que el programa genere  la serie deseada</property>
+                        <property name="use_stock">True</property>
                         <signal name="clicked" handler="createMatrixFile" swapped="no"/>
                       </object>
                       <packing>
@@ -481,7 +506,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="createMatrizButton">
-                        <property name="label" translatable="yes">Ok</property>
+                        <property name="label">gtk-ok</property>
                         <property name="name">btn_program</property>
                         <property name="width_request">150</property>
                         <property name="height_request">30</property>
@@ -489,6 +514,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_markup" translatable="yes">Pulsar para crear la serie y continuar</property>
+                        <property name="use_stock">True</property>
                         <signal name="clicked" handler="createMatrix" swapped="no"/>
                       </object>
                       <packing>

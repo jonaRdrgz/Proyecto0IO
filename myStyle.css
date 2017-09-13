@@ -1,11 +1,11 @@
-#window_main, #window_series, #window_final_series, #window_create_data_series{
+#window{
     background-color: #AFEEEE;
     color: #C71585;
     font-size:13px;
     font-weight: bold;
 }
 
-#window_main #OR, #window_series #OR, #window_final_series #OR, #window_create_data_series #OR{
+#window #OR{
 	background-color: #C71585;
 	 border-radius: 22px;
 }
