@@ -88,7 +88,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Para el cálculo de la ruta óptima entre 2 nodos se utiliza el algoritmo de Floyd el cual analisa todos los pares de nodos para encontrar el camino mínimo en grafos ponderados, dicho proceso en una única ejecución del algoritmo utilizando una matriz de adyacencia para validar la unión entre nodos y una matriz para conservar el valor de la ruta</property>
+            <property name="tooltip_markup" translatable="yes">Para el cálculo de la ruta óptima entre 2 nodos se utiliza el algoritmo de Floyd el cual analiza todos los pares de nodos para encontrar el camino mínimo en grafos ponderados, dicho proceso en una única ejecución del algoritmo utilizando una matriz de adyacencia para validar la unión entre nodos y una matriz para conservar el valor de la ruta</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>

@@ -28,10 +28,13 @@ GtkWidget     *label_table_DNumber;
 GtkWidget     *label_betterPath;
 
 const char **header;
-char *resultPreOptimal;
 char bufferForFile[9];
 int loadFileFlag = 0;
 char *filename;
+
+int begin = -1;
+int end = -1;
+
 
 //final
 GtkWidget       *combobox_from;
@@ -562,30 +565,30 @@ void execFloyd()
 	}
 }
 
-void getOptimalPath(int begin,int end){
+void getOptimalPath(int begin,int end, char label []){
 	char arrow[7] = " --> ";
+	printf("%s\n", gtk_entry_get_text(GTK_ENTRY(tableP[begin][end])));
 	int medium = atoi(gtk_entry_get_text(GTK_ENTRY(tableP[begin][end])));
 
 	if (medium == 0){
 		printf("Ruta directa de %d a %d \n",begin,end);
-		strcat(resultPreOptimal,arrow);
-		strcat(resultPreOptimal, header[end]);
+		strcat(label,arrow);
+		strcat(label, header[end]);
 	}
 	else{
-		strcat(resultPreOptimal,arrow);
-		strcat(resultPreOptimal, header[medium]);
+		strcat(label,arrow);
+		strcat(label, header[medium]);
 		printf("Tome %d y pase por %d \n",begin,medium);
-		getOptimalPath(medium,end);
+		getOptimalPath(medium,end, label);
 	}
-	gtk_label_set_text (GTK_LABEL(label_betterPath),resultPreOptimal);
+	gtk_label_set_text (GTK_LABEL(label_betterPath),label);
 }
 
 
 void getOptimalPath_button() {
-	int begin;
-	int end;
-	free(resultPreOptimal);
-	resultPreOptimal = malloc(sizeof(char) * 100);
+	char resultPre [1000] = "";
+	
+	//trcpy(resultPreOptimal,"");
 	for (int i = 0; i < numberNodes; ++i)
 	{
 		if(strcmp(header[i],gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(combobox_from))) == 0) {
@@ -595,9 +598,17 @@ void getOptimalPath_button() {
 			end = i;
 		}
 	}
-	resultPreOptimal = header[begin];
-	printf("Inicio: %d, Salida: %d\n",begin,end);
-	getOptimalPath(begin,end);
+
+	printf("%d, %d\n",begin, end );
+	if((begin != -1)  && (end != -1)){
+		strcat(resultPre,header[begin]);
+		//resultPreOptimal = header[begin];
+		printf("Inicio: %d, Salida: %d\n",begin,end);
+		getOptimalPath(begin,end, resultPre);
+	}
+	
+	
+	
 }
 
 
@@ -618,7 +629,7 @@ int main(int argc, char *argv[])
 	windowFinal  = GTK_WIDGET(gtk_builder_get_object(myBuilder, "get_path_between"));
 
 	spinButtonNode = GTK_WIDGET(gtk_builder_get_object(myBuilder, "spinButtonNode"));
-	gtk_spin_button_set_range (GTK_SPIN_BUTTON(spinButtonNode),1,99);
+	gtk_spin_button_set_range (GTK_SPIN_BUTTON(spinButtonNode),1,26);
 	gtk_spin_button_set_increments (GTK_SPIN_BUTTON(spinButtonNode),1,3);
 
 	label_table_DNumber = GTK_WIDGET(gtk_builder_get_object(myBuilder, "label_tableD_number"));

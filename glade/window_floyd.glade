@@ -3,11 +3,11 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="get_path_between">
-  	<property name="title" translatable="yes">Ruta Óptima</property>
     <property name="name">window</property>
     <property name="width_request">400</property>
     <property name="height_request">260</property>
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Ruta Óptima</property>
     <child>
       <object class="GtkFixed" id="fixed5">
         <property name="visible">True</property>
@@ -37,6 +37,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Obtener la ruta optima entre los nodos</property>
             <signal name="clicked" handler="getOptimalPath_button" swapped="no"/>
           </object>
           <packing>
@@ -82,6 +83,7 @@
             <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Punto de partida</property>
           </object>
           <packing>
             <property name="x">150</property>
@@ -94,6 +96,7 @@
             <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Punto de llegada</property>
           </object>
           <packing>
             <property name="x">145</property>
@@ -176,11 +179,11 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_floyd">
-  	<property name="title" translatable="yes">Ruta Óptima</property>
     <property name="name">window</property>
     <property name="width_request">400</property>
     <property name="height_request">200</property>
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Ruta Óptima</property>
     <property name="window_position">center</property>
     <property name="gravity">center</property>
     <child>
@@ -196,6 +199,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Calcular siguiente tabla de rutas cortas</property>
             <signal name="clicked" handler="execFloyd" swapped="no"/>
             <style>
               <class name="btnPath"/>
@@ -218,7 +222,7 @@
                 <property name="height_request">30</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="tooltip_markup" translatable="yes">File name </property>
+                <property name="tooltip_markup" translatable="yes">Nombre del archivo</property>
               </object>
               <packing>
                 <property name="x">2</property>
@@ -266,6 +270,7 @@
                     <property name="height_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Tabla de distancias</property>
                     <property name="shadow_type">in</property>
                     <child>
                       <placeholder/>
@@ -308,6 +313,7 @@
                     <property name="height_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Tabla de rutas</property>
                     <property name="shadow_type">in</property>
                     <child>
                       <placeholder/>
@@ -341,8 +347,9 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Save File</property>
+            <property name="tooltip_markup" translatable="yes">Salir del programa y volver al menú principal</property>
             <property name="use_stock">True</property>
+            <signal name="clicked" handler="on_window_main_destroy" swapped="no"/>
           </object>
           <packing>
             <property name="x">752</property>
@@ -355,7 +362,7 @@
   <object class="GtkWindow" id="window_initial_floyd">
     <property name="name">window</property>
     <property name="can_focus">False</property>
-	<property name="title" translatable="yes">Ruta Óptima</property>
+    <property name="title" translatable="yes">Ruta Óptima</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
     <property name="default_height">400</property>
@@ -431,7 +438,7 @@
                         <property name="height_request">28</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_markup" translatable="yes">Choose File</property>
+                        <property name="tooltip_markup" translatable="yes">Escoger el archivo</property>
                         <property name="title" translatable="yes"/>
                       </object>
                       <packing>
@@ -447,7 +454,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_markup" translatable="yes">Pulse para cargar el archivo y que el programa genere  la serie deseada</property>
+                        <property name="tooltip_markup" translatable="yes">Pulse para cargar el archivo y que el programa genere  la matriz de distancias deseada</property>
                         <property name="use_stock">True</property>
                         <signal name="clicked" handler="createMatrixFile" swapped="no"/>
                       </object>
@@ -502,6 +509,7 @@
                         <property name="height_request">28</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Aumentar el número de nodos.</property>
                         <property name="max_width_chars">2</property>
                         <property name="numeric">True</property>
                       </object>
@@ -515,7 +523,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_markup" translatable="yes">Pulsar para crear la serie y continuar</property>
+                        <property name="tooltip_markup" translatable="yes">Pulsar para crear la matriz de distancias  y continuar</property>
                         <property name="use_stock">True</property>
                         <signal name="clicked" handler="createMatrix" swapped="no"/>
                       </object>
