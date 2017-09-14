@@ -421,6 +421,11 @@ void destroy()
 	gtk_widget_hide(windowSave);
 }
 
+void destroyGetPath()
+{
+	gtk_widget_hide(windowFinal);
+}
+
 int loadFile()
 {
 
@@ -561,7 +566,13 @@ void execFloyd()
 		if (totalCycles == numberNodes) {
 			fillCombobox();
 			gtk_widget_show_all(windowFinal);
+			totalCycles++;
 		}
+		if (totalCycles>numberNodes)
+		{
+			gtk_widget_show_all(windowFinal);
+		}
+
 	}
 }
 
