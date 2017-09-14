@@ -528,8 +528,8 @@ void applyFloyd() {
 	int matrixAux[numberNodes-1][numberNodes-1];;
 	floydAux(MatrizD, matrixAux, matrixP,numberNodes-1, totalCycles);
 
-	printf("%s\n","matriz post" );
-	printMatrix(MatrizD, numberNodes-1);
+	//printf("%s\n","matriz post" );
+	//printMatrix(MatrizD, numberNodes-1);
 	setTableD(MatrizD);
 	setTableP(matrixP);
 	totalCycles++;
@@ -567,18 +567,18 @@ void execFloyd()
 
 void getOptimalPath(int begin,int end, char label []){
 	char arrow[7] = " --> ";
-	printf("%s\n", gtk_entry_get_text(GTK_ENTRY(tableP[begin][end])));
+	//printf("%s\n", gtk_entry_get_text(GTK_ENTRY(tableP[begin][end])));
 	int medium = atoi(gtk_entry_get_text(GTK_ENTRY(tableP[begin][end])));
 
 	if (medium == 0){
-		printf("Ruta directa de %d a %d \n",begin,end);
+		//printf("Ruta directa de %d a %d \n",begin,end);
 		strcat(label,arrow);
 		strcat(label, header[end]);
 	}
 	else{
 		strcat(label,arrow);
 		strcat(label, header[medium]);
-		printf("Tome %d y pase por %d \n",begin,medium);
+		//printf("Tome %d y pase por %d \n",begin,medium);
 		getOptimalPath(medium,end, label);
 	}
 	gtk_label_set_text (GTK_LABEL(label_betterPath),label);
@@ -599,11 +599,11 @@ void getOptimalPath_button() {
 		}
 	}
 
-	printf("%d, %d\n",begin, end );
+	//printf("%d, %d\n",begin, end );
 	if((begin != -1)  && (end != -1)){
 		strcat(resultPre,header[begin]);
 		//resultPreOptimal = header[begin];
-		printf("Inicio: %d, Salida: %d\n",begin,end);
+		//printf("Inicio: %d, Salida: %d\n",begin,end);
 		getOptimalPath(begin,end, resultPre);
 	}
 	
