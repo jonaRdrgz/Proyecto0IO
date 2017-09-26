@@ -1,0 +1,5 @@
+Año;Precio de Reventa;Mantenimiento;
+1;;;
+2;;;
+3;;;
+4;;;

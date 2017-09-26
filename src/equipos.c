@@ -90,6 +90,7 @@ int main(int argc, char *argv[]) {
     g_entry_initialCost = GTK_WIDGET(gtk_builder_get_object(builder, "entry_initialCost"));
     g_entry_fileName = GTK_WIDGET(gtk_builder_get_object(builder, "entry_fileName"));
 
+    myCSS();
     g_object_unref(builder);
     gtk_widget_show(windowInitialReplace);                
     gtk_main();
