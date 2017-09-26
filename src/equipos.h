@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int totalVidaUtil = 0;
-int costoInicial = 0;
+int totalUsefulLife = 0;
+int initialCost = 0;
 int timeLimit = 0;
 
 char buffer[9];
@@ -37,9 +37,9 @@ typedef struct
 	int position;
 } plans;
 
-void setTotalObjectsCount(int ptotalVidaUtil,int pcostoInicial, int pTimeLimit) {
-	totalVidaUtil = ptotalVidaUtil;
-	costoInicial = pcostoInicial;
+void setTotalObjectsCount(int pTotalUsefulLife,int pInitialCost, int pTimeLimit) {
+	totalUsefulLife = pTotalUsefulLife;
+	initialCost = pInitialCost;
 	timeLimit = pTimeLimit;
 }	
 
@@ -78,13 +78,13 @@ int scanner() {
 	return 0;
 }
 
-void setMatriz(int matrizD[totalVidaUtil-1][2]) {
+void setMatriz(int matrizD[totalUsefulLife-1][2]) {
 	int row = 0;
 	int column = 0;
 	int flag=0;
 	int action = scanner();
 
-	while (row < totalVidaUtil) {
+	while (row < totalUsefulLife) {
 	 	while (column < 3) {
 	 		if (action == 1 && row!=0 && flag==1) {
 			 	int value = atoi(buffer);
@@ -110,12 +110,12 @@ int countUsefulLifeFiles(char * address) {
 	while(feof(fileTableData) == 0) {  
 		ch = fgetc(fileTableData);
 		if (ch == '\n'){
-			totalVidaUtil ++;
+			totalUsefulLife ++;
 		}
 	}
 
 	fclose(fileTableData);
-	return totalVidaUtil;
+	return totalUsefulLife;
 }
 
 void startFill(int matrizD[][2],char *address) {
@@ -199,31 +199,31 @@ int repeat (plans planesPosibles[300],int indice){
 	}
 }
 
-void replaceAlgorithm(InitialTable initialData[totalVidaUtil], FinalTable finalData[timeLimit+1]) {
+void replaceAlgorithm(InitialTable initialData[totalUsefulLife], FinalTable finalData[timeLimit+1]) {
 
-	int cost[totalVidaUtil];
+	int cost[totalUsefulLife];
 	int mantain = 0;
 	
-	for (int year = 0; year < totalVidaUtil; year++) {
+	for (int year = 0; year < totalUsefulLife; year++) {
 		InitialTable matrizYear = initialData[year];
 		for (int rango=0; rango <=year; rango++) {
 			InitialTable matrizRango = initialData[rango];
 			mantain = mantain + matrizRango.maintenance;
 		}
-		cost[year] = costoInicial + mantain - matrizYear.sale;
+		cost[year] = initialCost + mantain - matrizYear.sale;
 		mantain = 0;
 	}
 
 	for (int i = timeLimit;i>=0;i--){
 		int min = 0;
 		int flag = 0;
-		candidate options[totalVidaUtil];
+		candidate options[totalUsefulLife];
 		candidate posibilites;
 		posibilites.value = 0;
 		posibilites.year = i;
 		FinalTable answer;
 		for (int x = i+1;x<=timeLimit;x++){
-			if (flag < totalVidaUtil){
+			if (flag < totalUsefulLife){
 				posibilites.value = cost[(x-i)-1] + finalData[x].value;
 				posibilites.year = x;
 				options[flag] = posibilites;
@@ -236,7 +236,7 @@ void replaceAlgorithm(InitialTable initialData[totalVidaUtil], FinalTable finalD
 			answer.value = posibilites.value;
 			answer.year[0] = posibilites.year;
 			answer.position = 0;
-			answer.profit = costoInicial;
+			answer.profit = initialCost;
 		}
 		for (int i = 0;i<flag;i++){
 			candidate aux;
@@ -260,7 +260,7 @@ void replaceAlgorithm(InitialTable initialData[totalVidaUtil], FinalTable finalD
 
 			}
 			answer.value = min;
-			answer.profit = costoInicial - min;
+			answer.profit = initialCost - min;
 		}
 		finalData[i] = answer;
 	}
