@@ -39,7 +39,7 @@ void run_program2(){
     system("./floyd &"); 
 }
 void run_program3(){
-    display_pending();
+    system("./equipos &");
 }
 void run_program4(){
     display_pending();
