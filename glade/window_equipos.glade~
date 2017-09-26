@@ -121,7 +121,6 @@
     <signal name="destroy" handler="on_window_initial_replace_destroy" swapped="no"/>
     <child>
       <object class="GtkFixed" id="fixed1">
-        <property name="name">window</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -280,7 +279,7 @@
                     <child>
                       <object class="GtkButton" id="btn_getFile">
                         <property name="label" translatable="yes">Cargar</property>
-                        <property name="name">btn_program</property>
+                        <property name="name">btn_cargar</property>
                         <property name="width_request">100</property>
                         <property name="height_request">30</property>
                         <property name="visible">True</property>
@@ -324,13 +323,13 @@
     </style>
   </object>
   <object class="GtkWindow" id="window_tableData">
+    <property name="name">window</property>
     <property name="width_request">650</property>
     <property name="height_request">590</property>
     <property name="can_focus">False</property>
     <signal name="destroy" handler="on_window_tableData_destroy" swapped="no"/>
     <child>
       <object class="GtkFixed" id="fixed4">
-        <property name="name">window</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>

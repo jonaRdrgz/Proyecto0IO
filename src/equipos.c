@@ -30,18 +30,31 @@ int cont_plans = 0;
 
 InitialTable *initialData;
 
+void myCSS(void){
+
+    GtkCssProvider *provider;
+    GdkDisplay *display;
+    GdkScreen *screen;
+
+    provider = gtk_css_provider_new ();
+    display = gdk_display_get_default ();
+    screen = gdk_display_get_default_screen (display);
+    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    const gchar *myCssFile = "myStyle.css";
+    GError *error = 0;
+
+    gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
+    g_object_unref (provider);
+}
 int main(int argc, char *argv[]) {
     GtkBuilder      *builder; 
-    /*--- CSS -----------------*/
-    GtkCssProvider  *provider;
-    GdkDisplay      *display;
-    GdkScreen       *screen;
-    /*-------------------------*/
+    myCSS();
  
     gtk_init(&argc, &argv);
  
     builder = gtk_builder_new();
-    gtk_builder_add_from_file (builder, "glade/window_reemplazoEquipos.glade", NULL);
+    gtk_builder_add_from_file (builder, "glade/window_equipos.glade", NULL);
  
     windowInitialReplace = GTK_WIDGET(gtk_builder_get_object(builder, "window_initial_replace"));
     gtk_builder_connect_signals(builder, NULL);
@@ -76,22 +89,7 @@ int main(int argc, char *argv[]) {
 
     g_entry_initialCost = GTK_WIDGET(gtk_builder_get_object(builder, "entry_initialCost"));
     g_entry_fileName = GTK_WIDGET(gtk_builder_get_object(builder, "entry_fileName"));
-
-    /*---------------- CSS ------------------------------------------------*/
-    provider = gtk_css_provider_new ();
-    display = gdk_display_get_default ();
-    screen = gdk_display_get_default_screen (display);
-    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-    gsize bytes_written, bytes_read;
-
-    const gchar* home = "style/reemplazoEquipos.css";  
-    GError *error = 0;
-  
-    gtk_css_provider_load_from_path (provider,
-        g_filename_to_utf8(home, strlen(home), &bytes_read, &bytes_written, &error),NULL);
-    /*---------------- END CSS ------------------------------------------------*/
- 
+    myCSS();
     g_object_unref(builder);
     gtk_widget_show(windowInitialReplace);                
     gtk_main();
