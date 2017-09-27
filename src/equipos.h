@@ -10,6 +10,9 @@ char row[9];
 
 int contado_x;
 
+int Amount;
+int timeLimitEquipment;
+
 FILE * fileTableData;
 
 typedef struct  {
@@ -64,11 +67,13 @@ int scanner() {
 	cleanBuffer();
 
 	int ch;
-
 	while (feof(fileTableData)==0) {   
 		ch = fgetc(fileTableData);
+
 		if (ch=='\n') {
-			return 0;
+
+				return 0;
+		
 		}
 		if (ch==';') {
 			return 1;
@@ -82,9 +87,10 @@ void setMatriz(int matrizD[totalUsefulLife-1][2]) {
 	int row = 0;
 	int column = 0;
 	int flag=0;
+
 	int action = scanner();
 
-	while (row < totalUsefulLife) {
+	while (row < totalUsefulLife - 2) {
 	 	while (column < 3) {
 	 		if (action == 1 && row!=0 && flag==1) {
 			 	int value = atoi(buffer);
@@ -101,12 +107,13 @@ void setMatriz(int matrizD[totalUsefulLife-1][2]) {
 	 	flag = 0;
 	 	action = scanner();
 	}
+	//scanner();
+	
 }
 
 int countUsefulLifeFiles(char * address) {
 	fileTableData = fopen(address,"r");
 	int ch;
-
 	while(feof(fileTableData) == 0) {  
 		ch = fgetc(fileTableData);
 		if (ch == '\n'){
@@ -115,12 +122,32 @@ int countUsefulLifeFiles(char * address) {
 	}
 
 	fclose(fileTableData);
-	return totalUsefulLife;
+	return totalUsefulLife - 2;
 }
 
 void startFill(int matrizD[][2],char *address) {
 	fileTableData = fopen(address,"r");
+	
 	setMatriz(matrizD);
+	fclose(fileTableData);
+	fileTableData = fopen(address,"r");
+	rewind(fileTableData);
+	char d[100];
+	for (int i = 0; i < totalUsefulLife + 1; i++)
+	{
+		fscanf(fileTableData, "%s", d);
+		if(i == totalUsefulLife - 1 )
+		{
+			fscanf(fileTableData, "%d", &Amount);
+			fscanf(fileTableData, "%d", &timeLimitEquipment);
+
+			printf("%d\n",timeLimitEquipment);
+
+			printf("%d\n",Amount );
+		}
+		
+	}
+	fclose(fileTableData);
 }
 
 
