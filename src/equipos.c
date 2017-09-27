@@ -378,6 +378,34 @@ void changeTableData(InitialTable data[usefulLife], int pManteSale[usefulLife - 
 
 }
 
+void getOptimalPlan(GX tablaFinal[timeLimit + 1])
+{
+  char path[999999] = "[0]->";
+
+  for(int i = 0; i < plazoProyecto; i++)
+  {
+    char aux[10];
+    if(tablaFinal[plazoProyecto - i].llaves[0] < plazoProyecto)
+    {
+      sprintf(aux, "[%d]->",tablaFinal[plazoProyecto - i].llaves[0]);
+    }
+    if(tablaFinal[plazoProyecto - i].llaves[0] == plazoProyecto)
+    {
+      sprintf(aux, "[%d]",tablaFinal[plazoProyecto - i].llaves[0]);
+    }
+    strcat(path, aux);
+    i = tablaFinal[plazoProyecto - i].llaves[0] - 1;
+
+  }
+
+  GtkWidget *g_lblSolution = gtk_label_new (path);
+  gtk_container_add (GTK_CONTAINER (g_scrolledwindow_optimalSolution), g_lblSolution);
+  gtk_widget_set_name(g_lblSolution,"label");
+
+  gtk_widget_show_all(windowFinalTable);
+  memset(path,'\0',strlen(path));
+}
+
 void on_btn_getTableData_clicked() {
   int initialCost = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(g_spinbutton_precioEquipo));
   timeLimit = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(g_spinbutton_timeLimit));
@@ -407,9 +435,11 @@ void on_btn_getTableData_clicked() {
 
 
   createFinalTableData(timeLimit, tablaFinal);
-  
+  getOptimalPlan(tablaFinal);
 
   gtk_widget_hide(windowTableData);
   gtk_widget_show_now(windowFinalTable);
   free(finalData);
 }
+
+
