@@ -1,0 +1,5 @@
+;San José;Limon;Cartago;Alajuela;
+San José;0;180;50;20;
+Limón;180;0;40;200;
+Cartago;10;30;0;60;
+Alajuela;30;170;78;0;

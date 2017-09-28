@@ -1,0 +1,7 @@
+400
+3
+Año;Precio de Reventa;Mantenimiento;
+1;300;20;
+2;250;30;
+3;100;60;
+4;20;120;

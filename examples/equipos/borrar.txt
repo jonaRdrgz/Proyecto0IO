@@ -1,0 +1,7 @@
+Año;Precio de Reventa;Mantenimiento;
+3
+3
+1;12;32;
+2;23;123;
+3;123;23;
+4;23;32;

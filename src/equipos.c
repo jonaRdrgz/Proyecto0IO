@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "equipos.h"
-#include "Reemplazo.c"
 
 GtkWidget       *windowInitialReplace;
 GtkWidget       *windowTableData;
@@ -200,7 +199,7 @@ void createTableDataFile(int Matriz[usefulLife-1][2]){
   gtk_widget_show_all(windowTableData);
 }
 
-void createFinalTableData(int timeLimit, GX Ftable[timeLimit + 1]) {
+void createFinalTableData(int timeLimit,FinalTable finalData[timeLimit+1]) {
   free(tableData);
   int ptimeLimit = timeLimit + 2;
   tableData = calloc(ptimeLimit,sizeof(GtkWidget**));
@@ -229,7 +228,7 @@ void createFinalTableData(int timeLimit, GX Ftable[timeLimit + 1]) {
       }
     }
     if (row!=0) {
-      
+      FinalTable data = finalData[row-1];
       char gt[50];
       char prox[50];
       char profit[50];
@@ -240,16 +239,16 @@ void createFinalTableData(int timeLimit, GX Ftable[timeLimit + 1]) {
       gtk_entry_set_text (GTK_ENTRY(tableData[row][0]),rowNumber);
       gtk_widget_set_name(tableData[row][0],"header");
 
-      sprintf(gt, "%d", Ftable[timeLimit + 1 - row].valor);
+      sprintf(gt, "%d", data.value);
       gtk_entry_set_text (GTK_ENTRY(tableData[row][1]), gt);
       gtk_widget_set_name(tableData[row][1],"allEntries");
         
       
-      for (int i=0;i<Ftable[timeLimit + 1 - row].numeroLlaves ;i++){
+      for (int i=0;i<data.position;i++){
         char aux[3];
-        sprintf(aux, "%d",Ftable[timeLimit + 1 - row].llaves[i]);
+        sprintf(aux, "%d", data.year[i]);
         strcat(prox,aux);
-        if (i<Ftable[timeLimit + 1 - row].numeroLlaves-1){
+        if (i<data.position-1){
           strcat(prox,",");
         }
 
@@ -258,7 +257,7 @@ void createFinalTableData(int timeLimit, GX Ftable[timeLimit + 1]) {
       gtk_entry_set_text (GTK_ENTRY(tableData[row][2]),prox);
       gtk_widget_set_name(tableData[row][2],"allEntries");
 
-      sprintf(profit, "%d", Ftable[timeLimit + 1 - row].ganancia);
+      sprintf(profit, "%d", data.profit);
       gtk_entry_set_text (GTK_ENTRY(tableData[row][3]), profit);
       gtk_widget_set_name(tableData[row][3],"allEntries");
       memset(prox,'\0',strlen(prox));
@@ -364,48 +363,6 @@ void on_btn_getFile_clicked() {
   gtk_widget_show_now(windowTableData);
 }
 
-void changeTableData(InitialTable data[usefulLife], int pManteSale[usefulLife - 1][2])
-{
-  for(int i = 0; i < usefulLife -1; i++)
-  {
-    
-    pManteSale[i][0] = data[i].sale;
-    pManteSale[i][1] = data[i].maintenance;
-    
-  }
- 
-
-
-}
-
-void getOptimalPlan(GX tablaFinal[timeLimit + 1])
-{
-  char path[999999] = "[0]->";
-
-  for(int i = 0; i < plazoProyecto; i++)
-  {
-    char aux[10];
-    if(tablaFinal[plazoProyecto - i].llaves[0] < plazoProyecto)
-    {
-      sprintf(aux, "[%d]->",tablaFinal[plazoProyecto - i].llaves[0]);
-    }
-    if(tablaFinal[plazoProyecto - i].llaves[0] == plazoProyecto)
-    {
-      sprintf(aux, "[%d]",tablaFinal[plazoProyecto - i].llaves[0]);
-    }
-    strcat(path, aux);
-    i = tablaFinal[plazoProyecto - i].llaves[0] - 1;
-
-  }
-
-  GtkWidget *g_lblSolution = gtk_label_new (path);
-  gtk_container_add (GTK_CONTAINER (g_scrolledwindow_optimalSolution), g_lblSolution);
-  gtk_widget_set_name(g_lblSolution,"label");
-
-  gtk_widget_show_all(windowFinalTable);
-  memset(path,'\0',strlen(path));
-}
-
 void on_btn_getTableData_clicked() {
   int initialCost = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(g_spinbutton_precioEquipo));
   timeLimit = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(g_spinbutton_timeLimit));
@@ -415,31 +372,15 @@ void on_btn_getTableData_clicked() {
   createObjects();
 
   FinalTable *finalData = calloc (timeLimit+1,sizeof(FinalTable));
-  int manteSale[usefulLife - 1][2];
-
-  changeTableData(initialData, manteSale);
-
-   for(int i = 0; i < usefulLife - 1; i++)
-  {
-    
-    printf("%d \n", manteSale[i][0]);
-    printf("%d \n", manteSale[i][1]);
-    
-  }
-
-  vidaUtilEquipo = usefulLife - 1;
-  plazoProyecto = timeLimit;
-  GX tablaFinal[timeLimit + 1];
-  reemplazo(usefulLife - 1, manteSale, initialCost, tablaFinal);
- 
-
-
-  createFinalTableData(timeLimit, tablaFinal);
-  getOptimalPlan(tablaFinal);
+  replaceAlgorithm(initialData,finalData);
+  free(initialData);
+  createFinalTableData(timeLimit,finalData);
+  planes(finalData,planesPosibles,cont_plans);
+  cont_plans = returnContador();
+  createOptimalSolution(planesPosibles);
 
   gtk_widget_hide(windowTableData);
   gtk_widget_show_now(windowFinalTable);
   free(finalData);
 }
-
 
