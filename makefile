@@ -29,6 +29,7 @@ all: $(OBJS)
 	$(CC) -o series src/series.c $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o floyd src/floyd.c $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o equipos src/equipos.c $(WARN) $(GTKLIB) -export-dynamic
+	$(CC) -o knapsack src/knapsack.c $(WARN) $(GTKLIB) -export-dynamic
     
 main.o: src/main.c
 	$(CC) -c $(CCFLAGS) src/main.c $(GTKLIB) -o main.o

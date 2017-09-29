@@ -102,13 +102,14 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program3">
-            <property name="label" translatable="yes">Remplazo de Equipos</property>
+            <property name="label" translatable="yes">Reemplazo de Equipos</property>
             <property name="name">btn_program</property>
             <property name="width_request">150</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">El empleo del análisis de reemplazo de equipo nos muestra una categoría de decisiones de inversión que implica considerar el gasto necesario para reemplazar equipo desgastado u obsoleto por tecnología de punta que permita mejorar la eficiencia de la producción y elevar el índice de productividad.</property>            <property name="halign">center</property>
+            <property name="tooltip_markup" translatable="yes">El empleo del análisis de reemplazo de equipo nos muestra una categoría de decisiones de inversión que implica considerar el gasto necesario para reemplazar equipo desgastado u obsoleto por tecnología de punta que permita mejorar la eficiencia de la producción y elevar el índice de productividad.</property>
+            <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
             <signal name="clicked" handler="run_program3" swapped="no"/>

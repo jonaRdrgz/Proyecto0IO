@@ -102,13 +102,13 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program3">
-            <property name="label" translatable="yes">Program 3</property>
+            <property name="label" translatable="yes">Reemplazo de Equipos</property>
             <property name="name">btn_program</property>
             <property name="width_request">150</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="tooltip_markup" translatable="yes">El empleo del análisis de reemplazo de equipo nos muestra una categoría de decisiones de inversión que implica considerar el gasto necesario para reemplazar equipo desgastado u obsoleto por tecnología de punta que permita mejorar la eficiencia de la producción y elevar el índice de productividad.</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -122,13 +122,13 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program4">
-            <property name="label" translatable="yes">Program 4</property>
+            <property name="label" translatable="yes">Knapsack</property>
             <property name="name">btn_program</property>
             <property name="width_request">150</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="tooltip_markup" translatable="yes">Knapsack es un problema de optimización combinatoria, es decir, que busca la mejor solución entre un conjunto finito de posibles soluciones a un problema. Modela una situación análoga al llenar una mochila, incapaz de soportar más de un peso determinado, con todo o parte de un conjunto de objetos, cada uno con un peso y valor específicos. Los objetos colocados en la mochila deben maximizar el valor total sin exceder el peso máximo.</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
@@ -142,13 +142,13 @@
         </child>
         <child>
           <object class="GtkButton" id="btn_program5">
-            <property name="label" translatable="yes">Program 5</property>
+            <property name="label" translatable="yes">Árboles Binarios de Búsqueda Óptimo</property>
             <property name="name">btn_program</property>
             <property name="width_request">150</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Descripción corta del programa</property>
+            <property name="tooltip_markup" translatable="yes">Un árbol impone una estructura jerárquica sobre una colección de objetos. Se considera que hay una relación de orden establecida entre los elementos de los nodos.</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>

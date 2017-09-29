@@ -42,7 +42,7 @@ void run_program3(){
     system("./equipos &");
 }
 void run_program4(){
-    display_pending();
+    system("./knapsack &");
 }
 void run_program5(){
     display_pending();
