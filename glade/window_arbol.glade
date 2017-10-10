@@ -241,7 +241,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btn_ok2">
+          <object class="GtkButton" id="chooseFileBtn">
             <property name="label">gtk-go-up</property>
             <property name="name">btn_program</property>
             <property name="visible">True</property>
@@ -253,6 +253,7 @@
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="use_stock">True</property>
+            <signal name="clicked" handler="loadFile" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">1</property>
@@ -260,7 +261,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkFileChooserButton">
+          <object class="GtkFileChooserButton" id="chooseFileButton">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
@@ -330,7 +331,7 @@
                             <property name="can_focus">False</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <object class="GtkEntry">
+                              <object class="GtkEntry" id="filenameEntry">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                               </object>
@@ -350,13 +351,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton">
+                      <object class="GtkButton" id="saveFile">
                         <property name="label" translatable="yes">Guardar</property>
                         <property name="width_request">113</property>
                         <property name="height_request">35</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <signal name="clicked" handler="saveFile_btn" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">270</property>

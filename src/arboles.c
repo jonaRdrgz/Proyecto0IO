@@ -32,6 +32,14 @@ GtkWidget       ***initialTableFinal;
 GtkWidget       *tableDataFinal;
 GtkWidget       *containerTableFinal;
 
+GtkWidget       *filenameEntry;
+GtkWidget       *saveFile;
+
+GtkWidget       *chooseFileButton;
+
+
+FILE            *infoFile;
+
 
 
 
@@ -45,7 +53,54 @@ node 			*nodeList;
 GtkWidget       *spinNumberNode;
 
 
+void createInfoFile(char *filename) 
+{
+  infoFile = fopen(filename,"w+");
 
+  fprintf(infoFile, "%d\n", inputNumberNode);
+ 
+  for(int i = 1; i < inputNumberNode + 1; i++) 
+  {
+      fprintf(infoFile, "%s", gtk_entry_get_text(GTK_ENTRY(initialTable[i][0])));
+      fprintf(infoFile,"\n");
+
+      fprintf(infoFile,"%.3f",atof(gtk_entry_get_text(GTK_ENTRY(initialTable[i][1]))));
+      fprintf(infoFile,"\n");
+  }
+  fclose(infoFile);
+}
+
+
+
+
+
+
+
+void saveFilebtn()
+{
+
+
+    char filename[1000] = "examples/arbol/";
+
+    int len = gtk_entry_get_text_length (GTK_ENTRY(filenameEntry));
+    if(len != 0 )
+    {
+      
+      strcat(filename,gtk_entry_get_text (GTK_ENTRY(filenameEntry)));
+      strcat(filename,".txt");
+      createInfoFile(filename);
+      
+      gtk_entry_set_text(GTK_ENTRY(filenameEntry),"");
+
+      //gtk_widget_show_all(windowSave);
+    }
+}
+
+
+void saveFile_btn()
+{
+  saveFilebtn();
+}
 
 void calculateProbaNodeList()
 {
@@ -288,7 +343,7 @@ void createTableFinal()
 
 void getTree()
 {
-	printf("%s\n", "izcar" );
+	
 	createNode();
 	sortNodeList();
 	calculateProbaNodeList();
@@ -313,29 +368,6 @@ void getTree()
 
 	matrixProb = calProbMatixFinal(matrixProb, matrixKey,  numberNode);
 
- 	
- 	for (int i = 0; i < numberNode; i++)
-	{
-		for (int j = 0; j < numberNode; j++)
-		{
-			printf("%.2f\t",matrixProb[i][j]);
-		}
-
-		printf("\n\n");
-	}
-
-
-	printf("\n\n\n\n");
-
-	for (int i = 0; i < numberNode; i++)
-	{
-		for (int j = 0; j < numberNode; j++)
-		{
-			printf("%d\t",matrixKey[i][j]);
-		}
-
-		printf("\n\n");
-	}
 
 	createTableA();
 	createTableB();
@@ -383,6 +415,50 @@ void createSetNodeData()
   }
 
 }
+
+
+
+void loadData(char *filename)
+{
+  infoFile = fopen(filename, "r");
+  if(infoFile != NULL)
+  {
+    fscanf(infoFile, "%i", &inputNumberNode);
+    
+  }
+}
+
+void createSetNodeDataFile()
+{
+  char str[40];
+  char number[10];
+  for(int row =0; row < inputNumberNode + 1; row++) 
+  {
+    
+    if (row != 0){
+      fscanf(infoFile, "%s", str);
+      fscanf(infoFile, "%s", number);
+      gtk_entry_set_text (GTK_ENTRY(initialTable[row][0]),str);
+      gtk_entry_set_text (GTK_ENTRY(initialTable[row][1]),number);
+    
+    }
+  
+  }
+}
+
+
+void loadFile()
+{
+  char *filename;
+  filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooseFileButton));
+  loadData(filename);
+  gtk_widget_hide(windowInitial); 
+  createSetNodeData();
+  createSetNodeDataFile();
+  gtk_widget_show_all(windowSetNode);
+}
+
+
 
 void createTableNode()
 {
@@ -450,6 +526,15 @@ int main(int argc, char *argv[]) {
     gtk_builder_connect_signals(builder, NULL);
 
     containerTableFinal = GTK_WIDGET(gtk_builder_get_object(builder, "tableFinal"));
+    gtk_builder_connect_signals(builder, NULL);
+
+    filenameEntry = GTK_WIDGET(gtk_builder_get_object(builder, "filenameEntry"));
+    gtk_builder_connect_signals(builder, NULL);
+
+    saveFile = GTK_WIDGET(gtk_builder_get_object(builder, "saveFile"));
+    gtk_builder_connect_signals(builder, NULL);
+
+    chooseFileButton = GTK_WIDGET(gtk_builder_get_object(builder, "chooseFileButton"));
     gtk_builder_connect_signals(builder, NULL);
  
  
