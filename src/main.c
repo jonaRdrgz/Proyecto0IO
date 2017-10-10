@@ -45,7 +45,7 @@ void run_program4(){
     system("./knapsack &");
 }
 void run_program5(){
-    display_pending();
+    system("./arboles &");
 }
 
 int main(int argc, char *argv[])

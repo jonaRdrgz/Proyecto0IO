@@ -7,8 +7,10 @@
 GtkWidget       *windowInitialReplace;
 GtkWidget       *windowTableData;
 GtkWidget       *windowFinalTable;
+
 GtkWidget       ***tableData;
 GtkWidget       *g_tableData;
+
 GtkWidget       *g_frame_manualEntry;
 GtkWidget       *g_frame_fileEntry;
 GtkWidget       *g_filechooser_btn;
