@@ -1,0 +1,9 @@
+4
+Harrison
+18,000
+Lennon
+32,000
+McCarrtney
+39,000
+Starr
+11,000
