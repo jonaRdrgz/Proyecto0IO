@@ -1,0 +1,31 @@
+15
+Harina
+8900,000
+Sal
+200,000
+Aceite
+1000,000
+Bananas
+1500,000
+Avena
+2500,000
+Azúcar
+3456,000
+Café
+8765,000
+Helado Vainilla
+9345,000
+Helado Caramelo
+12654,000
+Sirope Chocolate
+3456,000
+Mantequilla
+2345,000
+Canela
+1345,000
+Clavo de Olor
+345,000
+Fresas
+3467,000
+Champagne
+17434,000
