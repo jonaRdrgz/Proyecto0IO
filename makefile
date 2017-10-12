@@ -31,6 +31,7 @@ all: $(OBJS)
 	$(CC) -o equipos src/equipos.c $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o knapsack src/knapsack.c $(WARN) $(GTKLIB) -export-dynamic
 	$(CC) -o arboles src/arboles.c $(WARN) $(GTKLIB) -export-dynamic
+	$(CC) -o matrices src/matrices.c $(WARN) $(GTKLIB) -export-dynamic
     
 main.o: src/main.c
 	$(CC) -c $(CCFLAGS) src/main.c $(GTKLIB) -o main.o

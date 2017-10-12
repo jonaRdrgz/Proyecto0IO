@@ -47,6 +47,9 @@ void run_program4(){
 void run_program5(){
     system("./arboles &");
 }
+void run_program6(){
+    system("./matrices &");
+}
 
 int main(int argc, char *argv[])
 {

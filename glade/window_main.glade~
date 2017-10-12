@@ -161,6 +161,26 @@
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="btn_program6">
+            <property name="label" translatable="yes">Multiplicación de matrices</property>
+            <property name="name">btn_program</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_markup" translatable="yes">Un árbol impone una estructura jerárquica sobre una colección de objetos. Se considera que hay una relación de orden establecida entre los elementos de los nodos.</property>
+            <property name="halign">center</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
+            <signal name="clicked" handler="run_program5" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="btn_close_main">
             <property name="label">gtk-quit</property>
             <property name="name">quit</property>
@@ -176,7 +196,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">7</property>
+            <property name="position">8</property>
           </packing>
         </child>
       </object>
