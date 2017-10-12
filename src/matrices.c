@@ -402,7 +402,7 @@ static void print_text (GtkWidget *widget, gpointer p)
 {
     int * pointer = p;
     //printf("%d", pointer[0]);
-    gtk_widget_set_sensitive(initialTable[pointer[0]+1][pointer[1]-1],FALSE);
+    //gtk_widget_set_sensitive(initialTable[pointer[0]+1][pointer[1]-1],FALSE);
     gtk_entry_set_text (GTK_ENTRY(initialTable[pointer[0]+1][pointer[1]-1]),gtk_entry_get_text(GTK_ENTRY(widget)));
     //printf("%s\n","Hola" );
 }
@@ -448,8 +448,18 @@ void createSetNodeData()
       }
     }
   }
-  //g_signal_connect(GTK_ENTRY(initialTable[1][1]), "activate", G_CALLBACK(print_text), NULL);
-  
+
+  for(int row =0; row < keys; row++) 
+  {
+    for(int column=0; column < 3; column++) 
+    {
+      
+      
+      if(column == 2  && row >0 && row<keys-1){
+         gtk_widget_set_sensitive(initialTable[row+1][column-1],FALSE);
+      }
+    }
+  }
 }
 
 
