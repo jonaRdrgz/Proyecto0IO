@@ -6,10 +6,12 @@
 
 int inputNumberNode;
 
-
+int *globalIJ;
 
 const char *rowHeader[3] = {"Nombre","Filas","Columnas"};
 const char *rowHeader1[3] = {"Posición","Texto","Peso"};
+const char *alphabetNodes[27]={"A","B","C","D","E","F","G","H","I","J",
+"K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
 GtkWidget       *windowInitial;
 GtkWidget       *windowSetNode;
@@ -396,11 +398,14 @@ void getTree()
 
 
 
-void user_function(){
-
-	printf("%s\n","hola" );
+static void print_text (GtkWidget *widget, gpointer p)
+{
+    int * pointer = p;
+    //printf("%d", pointer[0]);
+    gtk_widget_set_sensitive(initialTable[pointer[0]+1][pointer[1]-1],FALSE);
+    gtk_entry_set_text (GTK_ENTRY(initialTable[pointer[0]+1][pointer[1]-1]),gtk_entry_get_text(GTK_ENTRY(widget)));
+    //printf("%s\n","Hola" );
 }
-
 
 
 
@@ -430,9 +435,21 @@ void createSetNodeData()
         gtk_widget_set_name(initialTable[row][column],"rowHeader");
         gtk_widget_set_sensitive(initialTable[row][column],FALSE);
       }
+      if(column == 2  && row >0 && row<keys-1){
+      	globalIJ = (int*) malloc(2 * sizeof(int));
+      	globalIJ[0] = row;
+      	globalIJ[1] = column;
+        
+      	g_signal_connect(GTK_ENTRY(initialTable[row][column]), "activate", G_CALLBACK(print_text),(gpointer) globalIJ);
+      	
+      }
+      if (column==0 && row>0){
+        gtk_entry_set_text (GTK_ENTRY(initialTable[row][column]),alphabetNodes[row-1]);
+      }
     }
   }
-  user_function(initialTable[0][0]);
+  //g_signal_connect(GTK_ENTRY(initialTable[1][1]), "activate", G_CALLBACK(print_text), NULL);
+  
 }
 
 
