@@ -168,11 +168,11 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_markup" translatable="yes">Un árbol impone una estructura jerárquica sobre una colección de objetos. Se considera que hay una relación de orden establecida entre los elementos de los nodos.</property>
+            <property name="tooltip_markup" translatable="yes">Algoritmo que permite conocer el resultado óptimo de multiplicar N matrices, además de el orden en que debe realizarse la multiplicación. Recibe como entrada el número de matrices y las dimenciones de las matrices.</property>
             <property name="halign">center</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <signal name="clicked" handler="run_program5" swapped="no"/>
+            <signal name="clicked" handler="run_program6" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "arbolesAlgoritmo.c"
+#include "matricesAlgoritmo.c"
 
 int inputNumberNode;
 
@@ -41,15 +41,15 @@ GtkWidget       *chooseFileButton;
 
 
 FILE            *infoFile;
+GtkWidget     *label_betterPath;
 
 
 
 
+char val[300000];
 
 
 
-
-node 			*nodeList;
 
 
 GtkWidget       *spinNumberNode;
@@ -87,9 +87,10 @@ void createInfoFile(char *filename)
       fprintf(infoFile, "%s", gtk_entry_get_text(GTK_ENTRY(initialTable[i][0])));
       fprintf(infoFile,"\n");
 
-      fprintf(infoFile,"%.3f",atof(gtk_entry_get_text(GTK_ENTRY(initialTable[i][1]))));
+      fprintf(infoFile,"%d",atoi(gtk_entry_get_text(GTK_ENTRY(initialTable[i][1]))));
       fprintf(infoFile,"\n");
   }
+  fprintf(infoFile,"%d",atoi(gtk_entry_get_text(GTK_ENTRY(initialTable[inputNumberNode][2]))));
   fclose(infoFile);
 }
 
@@ -103,7 +104,7 @@ void saveFilebtn()
 {
 
 
-    char filename[1000] = "examples/arbol/";
+    char filename[1000] = "examples/matrices/";
 
     int len = gtk_entry_get_text_length (GTK_ENTRY(filenameEntry));
     if(len != 0 )
@@ -125,77 +126,25 @@ void saveFile_btn()
   saveFilebtn();
 }
 
-void calculateProbaNodeList()
+
+
+void createMatrizDi(int matrixDi[inputNumberNode+1]) 
 {
-	float result;
-	result = 0;
-
-	float temp;
-	temp = 0;
-
-
-	for (int i = 0; i < inputNumberNode; i++)
-	{
-		result += nodeList[i].value;
-	}
-
-	for (int i = 0; i < inputNumberNode; i++)
-	{
-		temp = nodeList[i].value / result;
-		nodeList[i].value = temp;
-	}
-
-}
-
-
-
-
-void sortNodeList() 
-{
-	node temp;
-	
-	
-	for(int i=0; i < inputNumberNode; i++)
-	{
-		for(int j = i+1; j < inputNumberNode; j++) 
-		{
-			node nodeList1 = nodeList[i];
-			node nodeList2 = nodeList[j];
-			if(strcmp(nodeList1.name, nodeList2.name) > 0) {
-				temp = nodeList1;
-				nodeList[i] = nodeList2;
-				nodeList[j] = temp;
-			}
-
-		}
-  	}
-
-
-
-
-}
-
-void createNode() 
-{
-  nodeList = calloc(inputNumberNode,sizeof(node));
   
-  for (int row = 1; row < inputNumberNode + 1; row ++)
+  for (int row = 0; row < inputNumberNode; row ++)
   {
    
-   node pNode;
-    strcpy(pNode.name, gtk_entry_get_text(GTK_ENTRY(initialTable[row][0])));
-    pNode.value = atof(gtk_entry_get_text(GTK_ENTRY(initialTable[row][1])));
-
-
-    nodeList[row - 1] = pNode;
-}
-
+    matrixDi[row] = atoi(gtk_entry_get_text(GTK_ENTRY(initialTable[row+1][1])));
+    //printf(" %d %d\n",inputNumberNode+1, matrixDi[row] );
+  }
+  matrixDi[inputNumberNode] = atoi(gtk_entry_get_text(GTK_ENTRY(initialTable[inputNumberNode][2])));
+  //printf(" %d %d\n",inputNumberNode, matrixDi[inputNumberNode] );
 
 }
 
 void createTableA() 
 {
-  int keys = inputNumberNode + 2;
+  int keys = inputNumberNode + 1;
 
   initialTableA= calloc(keys,sizeof(GtkWidget**));
 
@@ -215,44 +164,50 @@ void createTableA()
       gtk_entry_set_width_chars(GTK_ENTRY(initialTableA[row][column]),8);
       gtk_grid_attach (GTK_GRID (tableDataA),initialTableA[row][column] , column, row, 1, 1);
       gtk_widget_set_sensitive(initialTableA[row][column],FALSE);
-
+      //gtk_widget_set_name(initialTableA[row][column],"newValueP");
 
       if(row == 0 && column == 0)
       {
       	sprintf(str, "%d", 0);
         gtk_entry_set_text (GTK_ENTRY(initialTableA[row][column]),str);
+        gtk_widget_set_name(initialTableA[row][column],"rowHeader2");
       }
 
       else if(row == 0)
       {
-      	sprintf(str, "%d", column - 1);
+      	sprintf(str, "%d", column);
         gtk_entry_set_text (GTK_ENTRY(initialTableA[row][column]),str);
+
+        gtk_widget_set_name(initialTableA[row][column],"rowHeader2");
       }
 
       else if(column == 0)
       {
       	sprintf(str, "%d", row);
         gtk_entry_set_text (GTK_ENTRY(initialTableA[row][column]),str);
+        gtk_widget_set_name(initialTableA[row][column],"rowHeader2");
       }
 
       else
       {
-      	float number;
-      	number = matrixProb[row - 1][column - 1];
-      	sprintf(str, "%.3f", number);
+      	int  number;
+      	number = matrixMul[row - 1][column - 1 ];
+      	sprintf(str, "%d", number);
       	gtk_entry_set_text (GTK_ENTRY(initialTableA[row][column]),str);
+        if(row == 1 && column == keys-1){
+            gtk_widget_set_name(initialTableA[row][column],"newValueP");
+        }
       }
         
       
     }
   }
-  
-
 }
+
 
 void createTableB() 
 {
-  int keys = inputNumberNode + 2;
+  int keys = inputNumberNode + 1;
 
   initialTableB= calloc(keys,sizeof(GtkWidget**));
 
@@ -277,18 +232,21 @@ void createTableB()
       {
       	sprintf(str, "%d", 0);
         gtk_entry_set_text (GTK_ENTRY(initialTableB[row][column]),str);
+        gtk_widget_set_name(initialTableB[row][column],"rowHeader2");
       }
 
       else if(row == 0)
       {
-      	sprintf(str, "%d", column - 1);
+      	sprintf(str, "%d", column);
         gtk_entry_set_text (GTK_ENTRY(initialTableB[row][column]),str);
+        gtk_widget_set_name(initialTableB[row][column],"rowHeader2");
       }
 
       else if(column == 0)
       {
       	sprintf(str, "%d", row);
         gtk_entry_set_text (GTK_ENTRY(initialTableB[row][column]),str);
+        gtk_widget_set_name(initialTableB[row][column],"rowHeader2");
       }
 
       else
@@ -305,93 +263,52 @@ void createTableB()
   
 }
 
-
-void createTableFinal() 
-{
-  int keys = inputNumberNode + 1;
-  initialTableFinal = calloc(keys,sizeof(GtkWidget**));
-
-  tableDataFinal = gtk_grid_new ();
-  gtk_container_add (GTK_CONTAINER (containerTableFinal), tableDataFinal);
-
-  for(int j = 0; j < keys; j++) {
-    initialTableFinal[j] = calloc(3,sizeof(GtkWidget*));
-  }
-
-  for(int row =0; row < keys; row++) 
-  {
-    for(int column=0; column < 3; column++) 
-    {
-    	char str[40];
-      initialTableFinal[row][column] = gtk_entry_new();
-      gtk_entry_set_width_chars(GTK_ENTRY(initialTableFinal[row][column]),8);
-      gtk_grid_attach (GTK_GRID (tableDataFinal),initialTableFinal[row][column] , column, row, 1, 1);
-      gtk_widget_set_sensitive(initialTableFinal[row][column],FALSE);
-
-      if (row == 0){
-        gtk_entry_set_text (GTK_ENTRY(initialTableFinal[row][column]),rowHeader1[column]);
-        gtk_widget_set_name(initialTableFinal[row][column],"header");
-        
-      }
-      else if(column == 0)
-      {
-      	
-      	sprintf(str, "%d", row);
-      	gtk_entry_set_text (GTK_ENTRY(initialTableFinal[row][column]),str);
-      }
-      else if(column == 1)
-      {
-      	sprintf(str, "%s",nodeList[row - 1].name);
-      	gtk_entry_set_text (GTK_ENTRY(initialTableFinal[row][column]),str);
-      }
-      else 
-      {
-      	float number;
-      	number = nodeList[row - 1].value;
-      	sprintf(str, "%.2f", number);
-      	gtk_entry_set_text (GTK_ENTRY(initialTableFinal[row][column]),str);
-      }
+void respuesta(int i,int j){
+    if(i==j){
+        strcat(val,alphabetNodes[i]);
+    }else{
+        strcat(val,"(");
+        respuesta(i,matrixKeyAux[i][j]);
+        strcat(val,"x");
+        respuesta(matrixKeyAux[i][j]+1,j);
+        strcat(val,")");
     }
-  }
-  
 }
-
 
 
 
 void getTree()
 {
-	
-	createNode();
-	sortNodeList();
-	calculateProbaNodeList();
 
 
-
-	numberNode = inputNumberNode + 1;
-	float nodeProb[inputNumberNode];
-
-	for (int i = 0; i < inputNumberNode; i++)
-	{
-		nodeProb[i] = nodeList[i].value;
-	}
+  numberDi = inputNumberNode;
+  int matrixDi[inputNumberNode+1];
+  createMatrizDi(matrixDi);
 
 
+  matrixMul =  fillMatrixMul(matrixMul, numberDi, matrixDi);
+  matrixKey   = fillMatrixKey(matrixKey, numberDi);
+
+  matrixMul = finalMatrix(matrixMul, matrixKey, matrixDi);
+  matrixKeyAux = matrixKey;
 
 
+  createTableA();
+  createTableB();
 
-
-	matrixProb  = fillMatrixProb(matrixProb, numberNode, nodeProb);
-	matrixKey   = fillMatrixKey(matrixKey, numberNode);
-
-	matrixProb = calProbMatixFinal(matrixProb, matrixKey,  numberNode);
-
-
-	createTableA();
-	createTableB();
-	createTableFinal();
-	gtk_widget_hide(windowSetNode);
-	gtk_widget_show_all(windowFinal);
+  for(int i = 0;i< inputNumberNode;i++){
+        for(int j=0;j< inputNumberNode;j++){
+            if(matrixKey[i][j]>0){
+                matrixKey[i][j]-=1; 
+            }
+        }
+    }
+  strcpy(val,"");
+  respuesta(0,inputNumberNode-1);
+  //printf("%s\n",val );
+  gtk_label_set_text (GTK_LABEL(label_betterPath),val);
+  gtk_widget_hide(windowSetNode);
+  gtk_widget_show_all(windowFinal);
 
 	
 }
@@ -445,6 +362,7 @@ void createSetNodeData()
       }
       if (column==0 && row>0){
         gtk_entry_set_text (GTK_ENTRY(initialTable[row][column]),alphabetNodes[row-1]);
+        gtk_widget_set_sensitive(initialTable[row][column],FALSE);
       }
     }
   }
@@ -490,6 +408,8 @@ void createSetNodeDataFile()
     }
   
   }
+  fscanf(infoFile, "%s", number);
+  gtk_entry_set_text (GTK_ENTRY(initialTable[inputNumberNode][2]),number);
 }
 
 
@@ -498,9 +418,9 @@ void loadFile()
   char *filename;
   filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooseFileButton));
   loadData(filename);
-  gtk_widget_hide(windowInitial); 
   createSetNodeData();
   createSetNodeDataFile();
+  gtk_widget_hide(windowInitial); 
   gtk_widget_show_all(windowSetNode);
 }
 
@@ -545,6 +465,7 @@ int main(int argc, char *argv[]) {
 
     containerTableB = GTK_WIDGET(gtk_builder_get_object(builder, "tableB"));
     gtk_builder_connect_signals(builder, NULL);
+    label_betterPath = GTK_WIDGET(gtk_builder_get_object(builder, "labelSolution"));
 
     //containerTableFinal = GTK_WIDGET(gtk_builder_get_object(builder, "tableFinal"));
     //gtk_builder_connect_signals(builder, NULL);

@@ -114,6 +114,11 @@ color: #C71585;
     color: white;
     border-radius: 0;
 }
+#rowHeader2 {
+    background: #04B431;
+    color: white;
+    border-radius: 0;
+}
 #getObject {
     background: #088A29;
     color: black;
